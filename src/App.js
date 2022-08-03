@@ -2,6 +2,7 @@ import './App.css';
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "./state/index";
+import { useState } from 'react';
 
 function App() {
 
@@ -10,12 +11,14 @@ function App() {
 
   const { depositMoney, withdrawMoney } = bindActionCreators(actionCreators, dispatch);
 
+  const [amount, setAmount] = useState(0)
 
   return (
     <div className="App">
       <h1>{state}</h1>
-      <button onClick={() => depositMoney(1000)}>Deposit</button>
-      <button onClick={() => withdrawMoney(1000)}>Withdraw</button>
+      <input type="number" onChange={(e) => setAmount(e.target.value)} />
+      <button onClick={() => depositMoney(+amount)}>Deposit</button>
+      <button onClick={() => withdrawMoney(amount)}>Withdraw</button>
     </div>
   );
 }
