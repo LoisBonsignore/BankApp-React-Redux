@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "./state/index";
 import { useState } from 'react';
+import Navbar from './components/Navbar';
 
 function App() {
 
@@ -11,14 +12,23 @@ function App() {
 
   const { depositMoney, withdrawMoney } = bindActionCreators(actionCreators, dispatch);
 
-  const [amount, setAmount] = useState(0)
+  const [money, setMoney] = useState(0)
 
   return (
     <div className="App">
-      <h1>{state}</h1>
-      <input type="number" onChange={(e) => setAmount(e.target.value)} />
-      <button onClick={() => depositMoney(+amount)}>Deposit</button>
-      <button onClick={() => withdrawMoney(amount)}>Withdraw</button>
+      <Navbar />
+      <div className="general-operation-container">
+        <div className="operation-container">
+          <input type="number" onChange={(e) => setMoney(e.target.value)} />
+          <div className="btns-container">
+            <button onClick={() => depositMoney(+money)}>Deposit</button>
+            <button className="red" onClick={() => withdrawMoney(money)}>Withdraw</button>
+          </div>
+        </div>
+        <div className="display-container">
+          <h1 className={state > 0 ? "positive" : "negative"}>{state} €</h1>
+        </div>
+      </div>
     </div>
   );
 }

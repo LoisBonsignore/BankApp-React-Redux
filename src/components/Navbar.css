@@ -1,0 +1,11 @@
+nav {
+    width: 100%;
+    background-color: goldenrod;
+    height: 5vh;
+    margin-bottom: 120px;
+}
+
+nav div {
+    display: flex;
+    margin-left: 5%;
+}
